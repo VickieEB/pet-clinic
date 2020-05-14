@@ -2,6 +2,7 @@ package com.petproject.petclinic.bootstrap;
 
 
 import com.petproject.petclinic.model.Owner;
+import com.petproject.petclinic.model.Pet;
 import com.petproject.petclinic.model.PetType;
 import com.petproject.petclinic.model.Vet;
 import com.petproject.petclinic.services.OwnerService;
@@ -9,6 +10,8 @@ import com.petproject.petclinic.services.PetTypeService;
 import com.petproject.petclinic.services.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 
 @Component
@@ -36,30 +39,50 @@ public class DataLoader implements CommandLineRunner {
         PetType savedCatPetType = petTypeService.save(cat);
 
         Owner owner1 = new Owner();
-        owner1.setId(1L);
-        owner1.setFirstName("Vickie");
-        owner1.setLastName("EB");
+        //owner1.setId(1L);
+        owner1.setFirstName("Lara");
+        owner1.setLastName("Oshodi");
+        owner1.setAddress("19 Adeola Raji Street");
+        owner1.setCity("Gbagada, Lagos");
+        owner1.setTelephone("08139820880");
+
+        Pet larasPet = new Pet();
+        larasPet.setPetType(savedCatPetType);
+        larasPet.setOwner(owner1);
+        larasPet.setBirthDate(LocalDate.now());
+        larasPet.setName("Lulu-Lemon");
+        owner1.getPets().add(larasPet);
 
         ownerService.save(owner1);
 
         Owner owner2 = new Owner();
-        owner2.setId(2L);
+        //owner2.setId(2L);
         owner2.setFirstName("Christiana");
         owner2.setLastName("Faffinatu");
+        owner2.setAddress("10 Ajose Adeogun");
+        owner2.setCity("Victoria Island, Lagos");
+        owner2.setTelephone("08067848221");
+
+        Pet christysPet = new Pet();
+        christysPet.setPetType(savedDogPetType);
+        christysPet.setOwner(owner2);
+        christysPet.setBirthDate(LocalDate.now());
+        christysPet.setName("Jason");
+        owner2.getPets().add(christysPet);
 
         ownerService.save(owner2);
 
         System.out.println("======Owner Data Loaded======");
 
         Vet vet1 = new Vet();
-        vet1.setId(1L);
+        //vet1.setId(1L);
         vet1.setFirstName("Jules");
         vet1.setLastName("Kinder");
 
         vetService.save(vet1);
 
         Vet vet2 = new Vet();
-        vet2.setId(2L);
+        //vet2.setId(2L);
         vet2.setFirstName("Jenny");
         vet2.setLastName("Smith");
 
