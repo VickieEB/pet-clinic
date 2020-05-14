@@ -2,5 +2,5 @@ package com.petproject.petclinic.services;
 
 import com.petproject.petclinic.model.Specialty;
 
-public interface SpecialtiesService extends CrudService<Specialty, Long> {
+public interface SpecialtyService extends CrudService<Specialty, Long> {
 }
