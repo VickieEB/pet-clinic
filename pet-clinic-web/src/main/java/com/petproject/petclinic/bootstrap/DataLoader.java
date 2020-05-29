@@ -67,6 +67,8 @@ public class DataLoader implements CommandLineRunner {
         owner1.setCity("Gbagada, Lagos");
         owner1.setTelephone("08139820880");
 
+        //owner1.builder().address("18b Adeola Raji Street").firstName("Lara").build();
+
         Pet larasPet = new Pet();
         larasPet.setPetType(savedCatPetType);
         larasPet.setOwner(owner1);
@@ -82,6 +84,7 @@ public class DataLoader implements CommandLineRunner {
         owner2.setAddress("10 Ajose Adeogun");
         owner2.setCity("Victoria Island, Lagos");
         owner2.setTelephone("08067848221");
+
 
         Pet christysPet = new Pet();
         christysPet.setPetType(savedDogPetType);
