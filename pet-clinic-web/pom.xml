@@ -120,8 +120,10 @@
                         <artifactId>mockito-core</artifactId>
                         <version>${mockito.version}</version>
                     </dependency>
+
                 </dependencies>
             </plugin>
+
         </plugins>
     </build>
 
