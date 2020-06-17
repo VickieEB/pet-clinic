@@ -52,6 +52,21 @@ class PetServiceMapTest {
         assertEquals("Sasha", savedPet.getName());
     }
 
+    @Test
+    void saveDuplicate() {
+        Long id = 1L;
+        Pet pet = Pet.builder().id(id).build();
+        Pet savedPet  = petServiceMap.save(pet);
+        assertEquals(id, savedPet.getId());
+    }
+
+    @Test
+    void saveNoId() {
+        Pet savedPet = petServiceMap.save(Pet.builder().build());
+        assertNotNull(savedPet);
+        assertNotNull(savedPet.getId());
+        assertEquals(2, savedPet.getId());
+    }
 
     @Test
     void deleteById() {
@@ -65,7 +80,9 @@ class PetServiceMapTest {
         assertEquals(0, petServiceMap.findAll().size());
     }
 
-
-
-
+    @Test
+    void deleteWithWrongId() {
+        petServiceMap.deleteById(5L);
+        assertEquals(1, petServiceMap.findAll().size());
+    }
 }
