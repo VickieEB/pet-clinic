@@ -13,8 +13,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verify;
@@ -48,6 +47,15 @@ class PetSDJpaServiceTest {
         assertNotNull(allPets);
 
         verify(petRepository).findAll();
+
+    }
+
+    @Test
+    void findByIdNotFound() {
+        when(petRepository.findById(anyLong())).thenReturn(Optional.empty());
+        Pet pet = service.findById(1L);
+        assertNull(pet);
+
 
     }
 
