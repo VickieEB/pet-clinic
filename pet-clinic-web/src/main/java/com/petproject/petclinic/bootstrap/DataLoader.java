@@ -7,6 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.time.Month;
 
 
 @Component
@@ -63,17 +64,15 @@ public class DataLoader implements CommandLineRunner {
         //owner1.setId(1L);
         owner1.setFirstName("Lara");
         owner1.setLastName("Oshodi");
-        owner1.setAddress("19 Adeola Raji Street");
-        owner1.setCity("Gbagada, Lagos");
+        owner1.setAddress("House 5, Palm View Estate, Phase 1");
+        owner1.setCity("Iyana Paja, Lagos");
         owner1.setTelephone("08139820880");
-
-        //owner1.builder().address("18b Adeola Raji Street").firstName("Lara").build();
 
         Pet larasPet = new Pet();
         larasPet.setPetType(savedCatPetType);
         larasPet.setOwner(owner1);
         larasPet.setBirthDate(LocalDate.now());
-        larasPet.setName("Lola");
+        larasPet.setName("Ruby");
         owner1.getPets().add(larasPet);
 
         ownerService.save(owner1);
@@ -86,21 +85,82 @@ public class DataLoader implements CommandLineRunner {
         owner2.setTelephone("08067848221");
 
 
-        Pet christysPet = new Pet();
-        christysPet.setPetType(savedDogPetType);
-        christysPet.setOwner(owner2);
-        christysPet.setBirthDate(LocalDate.now());
-        christysPet.setName("Jason");
-        owner2.getPets().add(christysPet);
+        Pet christysPet1 = new Pet();
+        christysPet1.setPetType(savedCatPetType);
+        christysPet1.setBirthDate(LocalDate.of(2018, Month.JUNE, 12));
+        christysPet1.setName("Lucie");
+        christysPet1.setOwner(owner2);
+        owner2.getPets().add(christysPet1);
+
+        Pet christysPet2 = new Pet();
+        christysPet2.setPetType(savedCatPetType);
+        christysPet2.setName("Charlie");
+        christysPet2.setBirthDate(LocalDate.of(2020, Month.APRIL, 7));
+        christysPet2.setOwner(owner2);
+        owner2.getPets().add(christysPet2);
 
         ownerService.save(owner2);
 
-        Visit catVisit = new Visit();
-        catVisit.setPet(larasPet);
-        catVisit.setDate(LocalDate.now());
-        catVisit.setDescription("Leg Injury");
+        Owner owner3 = new Owner();
+        owner3.setFirstName("Vickie");
+        owner3.setLastName("EB");
+        owner3.setAddress("9b Alhaji Lateef Shofowora");
+        owner3.setCity("Gbagada, Lagos.");
+        owner3.setTelephone("08053936878");
 
-        visitService.save(catVisit);
+        Pet vickiePet1 = new Pet();
+        vickiePet1.setPetType(savedCatPetType);
+        vickiePet1.setName("Coco");
+        vickiePet1.setBirthDate(LocalDate.of(2020, Month.APRIL, 7));
+        vickiePet1.setOwner(owner3);
+        owner3.getPets().add(vickiePet1);
+
+        Pet vickiePet2 = new Pet();
+        vickiePet2.setPetType(savedCatPetType);
+        vickiePet2.setName("Rico");
+        vickiePet2.setBirthDate(LocalDate.of(2020, Month.APRIL, 7));
+        vickiePet2.setOwner(owner3);
+        owner3.getPets().add(vickiePet2);
+
+        ownerService.save(owner3);
+
+        Visit rubysVisit = new Visit();
+        rubysVisit.setPet(larasPet);
+        rubysVisit.setDate(LocalDate.now());
+        rubysVisit.setDescription("Leg Injury");
+
+        visitService.save(rubysVisit);
+
+        Visit cocosVisit1 = new Visit();
+        cocosVisit1.setPet(vickiePet1);
+        cocosVisit1.setDate(LocalDate.of(2020, Month.JULY, 4));
+        cocosVisit1.setDescription("Deworming");
+
+        visitService.save(cocosVisit1);
+
+        Visit ricosVisit1 = new Visit();
+        ricosVisit1.setPet(vickiePet2);
+        ricosVisit1.setDate(LocalDate.of(2020, Month.JULY, 4));
+        ricosVisit1.setDescription("Deworming");
+
+
+        visitService.save(ricosVisit1);
+
+        Visit cocosVisit2 = new Visit();
+        cocosVisit2.setPet(vickiePet1);
+        cocosVisit2.setDate(LocalDate.of(2020, Month.JULY, 21));
+        cocosVisit2.setDescription("Flea Treatment");
+
+        visitService.save(cocosVisit2);
+
+        Visit ricosVisit2 = new Visit();
+        ricosVisit2.setPet(vickiePet2);
+        ricosVisit2.setDate(LocalDate.of(2020, Month.JULY, 21));
+        ricosVisit2.setDescription("Flea Treatment");
+
+
+        visitService.save(ricosVisit2);
+
 
         //Create Vets
         Vet vet1 = new Vet();
