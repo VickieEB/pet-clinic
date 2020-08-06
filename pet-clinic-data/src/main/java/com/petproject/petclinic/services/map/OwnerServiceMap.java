@@ -86,4 +86,9 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
         //todo - implement this
         return null;
     }
+
+    @Override
+    public List<Owner> findByLastNameLowerCaseLike(String lastName) {
+        return null;
+    }
 }

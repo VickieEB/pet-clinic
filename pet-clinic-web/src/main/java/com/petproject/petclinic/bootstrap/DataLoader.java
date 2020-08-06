@@ -79,7 +79,7 @@ public class DataLoader implements CommandLineRunner {
 
         Owner owner2 = new Owner();
         owner2.setFirstName("Christiana");
-        owner2.setLastName("Faffinatu");
+        owner2.setLastName("Etim Faffinatu");
         owner2.setAddress("10 Ajose Adeogun");
         owner2.setCity("Victoria Island, Lagos");
         owner2.setTelephone("08067848221");
@@ -103,7 +103,7 @@ public class DataLoader implements CommandLineRunner {
 
         Owner owner3 = new Owner();
         owner3.setFirstName("Vickie");
-        owner3.setLastName("EB");
+        owner3.setLastName("Etim Bassey");
         owner3.setAddress("9b Alhaji Lateef Shofowora");
         owner3.setCity("Gbagada, Lagos.");
         owner3.setTelephone("08053936878");

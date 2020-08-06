@@ -47,7 +47,9 @@ public class OwnerController {
             owner.setLastName("");
         }
 
-        List<Owner> results = ownerService.findByLastNameLike("%" + owner.getLastName() + "%");
+        //Todo Allow the search work with Lower Case
+        //List<Owner> results = ownerService.findByLastNameLike("%" + owner.getLastName() + "%");
+        List<Owner> results = ownerService.findByLastNameLowerCaseLike(owner.getLastName());
 
         if(results.isEmpty()){
             result.rejectValue("lastName", "notFound", "Not Found");
