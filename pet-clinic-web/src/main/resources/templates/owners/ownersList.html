@@ -24,7 +24,10 @@
         <td th:text="${owner.address}"/>
         <td th:text="${owner.city}"/>
         <td th:text="${owner.telephone}"/>
-        <td><span th:each="pet : ${owner.pets}" th:text="${pet.name} "/></td>
+        <!--<td><span th:each="pet : ${owner.pets}" th:text="${pet.name}"/></td>-->
+        <td><ul th:each="pet : ${owner.pets}">
+            <li th:text="${pet.name}">Pet one</li>
+        </ul></td>
     </tr>
     </tbody>
 </table>
