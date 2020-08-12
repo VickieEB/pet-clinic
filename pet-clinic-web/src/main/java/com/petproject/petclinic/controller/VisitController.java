@@ -1,6 +1,5 @@
 package com.petproject.petclinic.controller;
 
-import com.petproject.petclinic.model.Pet;
 import com.petproject.petclinic.model.Visit;
 import com.petproject.petclinic.services.PetService;
 import com.petproject.petclinic.services.VisitService;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @Controller
-//@RequestMapping("/owners/{ownerId}/pets/{petId}")
+@RequestMapping("/owners/{ownerId}/pets/{petId}/visits")
 public class VisitController {
 
     private VisitService visitService;
@@ -30,29 +29,30 @@ public class VisitController {
         dataBinder.setDisallowedFields("id");
     }
 
-    @ModelAttribute("visit")
-    public Visit loadPetWithVisit(@PathVariable Long petId, Model model){
-        Pet pet = petService.findById(petId);
-        model.addAttribute("pet", pet);
+//    @ModelAttribute("visit")
+//    public Visit loadPetWithVisit(@PathVariable Long petId, Model model){
+//        Pet pet = petService.findById(petId);
+//        model.addAttribute("pet", pet);
+//
+//        Visit visit = new Visit();
+//        pet.getVisits().add(visit);
+//        visit.setPet(pet);
+//        return visit;
+//    }
 
-        Visit visit = new Visit();
-        pet.getVisits().add(visit);
-        visit.setPet(pet);
-        return visit;
-    }
-
-    //SpringMVC will call loadPetWithVisits() before this method
-    @GetMapping("/owners/*/pets/{petId}/visits/new")
+    @GetMapping("/new")
     public String initVisitCreationForm(@PathVariable Long petId, Model model){
+        model.addAttribute("visit", new Visit());
+        model.addAttribute("pet", petService.findById(petId));
         return VIEWS_VISITS_CREATE_OR_UPDATE_FORM;
     }
 
-    //SpringMVC will call loadPetWithVisits() before this method
-    @PostMapping("/owners/{ownerId}/pets/{petId}/visits/new")
-    public String processNewVisitForm(@Valid Visit visit, BindingResult result){
+    @PostMapping("/new")
+    public String processNewVisitForm(@Valid Visit visit, @PathVariable Long petId, BindingResult result){
         if(result.hasErrors()){
             return VIEWS_VISITS_CREATE_OR_UPDATE_FORM;
         }else{
+            visit.setPet(petService.findById(petId));
             visitService.save(visit);
         }
         return "redirect:/owners/1";
