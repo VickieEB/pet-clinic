@@ -55,7 +55,7 @@ public class VisitController {
         }else{
             visitService.save(visit);
         }
-        return VIEWS_VISITS_CREATE_OR_UPDATE_FORM;
+        return "redirect:/owners/1";
     }
 
 
