@@ -16,7 +16,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.time.LocalDate;
 import java.util.HashSet;
 
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -47,7 +46,9 @@ class VisitControllerTest {
     void setUp() {
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
         when(petService.findById(anyLong()))
-                .thenReturn(Pet.builder().id(1L).birthDate(LocalDate.of(2018,11,13)).name("Rico")
+                .thenReturn(Pet.builder().id(1L)
+                        //.birthDate(LocalDate.of(2018,11,13))
+                        .name("Rico")
                         .visits(new HashSet<>())
                         .owner(Owner.builder().id(1L).lastName("Etim Bassey").firstName("Vickie").build())
                         .petType(PetType.builder().name("Cat").build())
@@ -66,6 +67,7 @@ class VisitControllerTest {
     void processNewVisitForm() throws Exception {
         mockMvc.perform(post("/owners/1/pets/2/visits/new")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .param("date", "2020-08-27")
                 .param("description", "Leg Injury")
         )
                 .andExpect(status().is3xxRedirection())

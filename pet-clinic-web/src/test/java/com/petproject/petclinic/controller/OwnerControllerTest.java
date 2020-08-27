@@ -101,7 +101,8 @@ class OwnerControllerTest {
 
     @Test
     void processFindFormForEmptyReturnsMany() throws Exception{
-        when(ownerService.findByLastNameLowerCaseLike(anyString())).thenReturn(Arrays.asList(Owner.builder().id(1L).build(), Owner.builder().id(2L).build()));
+        when(ownerService.findByLastNameLowerCaseLike(anyString()))
+                .thenReturn(Arrays.asList(Owner.builder().id(1L).build(), Owner.builder().id(2L).build()));
         mockMvc.perform(get("/owners").param("lastName", ""))
                 .andExpect(status().isOk())
                 .andExpect(view().name("owners/ownersList"))
